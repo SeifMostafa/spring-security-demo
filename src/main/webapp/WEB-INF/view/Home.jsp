@@ -15,20 +15,32 @@
 
 	<hr>
 
-	
-		<p>
-			User:
-			<security:authentication property="principal.username" />
-			<br> <br> Role(s):
-			<security:authentication property="principal.authorities" />
-		</p>
-	
+
+	<p>
+		User:
+		<security:authentication property="principal.username" />
+		<br> <br> Role(s):
+		<security:authentication property="principal.authorities" />
+	</p>
+
 
 
 	<p>
-		<a href="${pageContext.request.contextPath}/leaders">Leadership
-			meeting</a> <br> <br> <a
-			href="${pageContext.request.contextPath}/system">System page</a>
+
+		<security:authorize access="hasRole('MANAGER')">
+
+
+			<a href="${pageContext.request.contextPath}/leaders">Leadership
+				meeting</a>
+
+		</security:authorize>
+		<br> <br>
+
+		<security:authorize access="hasRole('ADMIN')">
+
+			<a href="${pageContext.request.contextPath}/system">System page</a>
+
+		</security:authorize>
 	</p>
 
 
